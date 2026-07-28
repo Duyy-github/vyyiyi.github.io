@@ -1,612 +1,447 @@
+:root {
+    --bg-gradient: linear-gradient(135deg, #fde2e4 0%, #ffcad4 50%, #b5e2fa 100%);
+    --primary-pink: #ffb5a7;
+    --soft-red: #e63946;
+    --paper-bg: #fdfbf7;
+    --text-color: #4a3e3d;
+    --shadow-soft: 0 15px 35px rgba(230, 57, 70, 0.15);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 html, body {
     height: 100%;
     width: 100%;
+    overflow: hidden;
+    font-family: 'Be Vietnam Pro', sans-serif;
 }
 
 .container {
     position: relative;
     height: 100%;
     width: 100%;
-    background-color: #fc6885;
+    background: var(--bg-gradient);
     overflow: hidden;
 }
 
+/* ==================== HEARTS ANIMATION ==================== */
 .paperHeart {
     position: absolute;
-    height: 100px;
-    top: 80%;
+    height: 70px;
+    bottom: -100px;
     opacity: 0;
-    filter: drop-shadow(0 0 20px white);
-    animation: hiddenHeart 3.1s linear forwards,flyHeart 4s ease-in-out calc(var(--time) + 3.1s) infinite;
+    filter: drop-shadow(0 8px 15px rgba(255, 182, 193, 0.6));
+    animation: flyHeart var(--speed) ease-in-out calc(var(--time) + 2s) infinite;
+    pointer-events: none;
 }
 
-.paperHeart1 {
-    left: 50px;
+.paperHeart1 { left: 5%; }
+.paperHeart2 { left: 22%; }
+.paperHeart3 { left: 40%; }
+.paperHeart4 { left: 58%; }
+.paperHeart5 { left: 75%; }
+.paperHeart6 { left: 88%; }
+
+@keyframes flyHeart {
+    0% {
+        transform: translateY(0) scale(0.8) rotate(0deg);
+        opacity: 0;
+    }
+    15% { opacity: 0.85; }
+    80% { opacity: 0.85; }
+    100% {
+        transform: translateY(-110vh) scale(1.1) rotate(25deg);
+        opacity: 0;
+    }
 }
 
-.paperHeart2 {
-    left: 250px;
+/* ==================== TITLE ==================== */
+.boxTitle {
+    position: absolute;
+    top: -30%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    font-size: 80px;
+    color: var(--soft-red);
+    text-align: center;
+    z-index: 5;
+    text-shadow: 0 8px 20px rgba(255, 255, 255, 0.9);
+    transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    width: 100%;
 }
 
-.paperHeart3 {
-    left: 500px;
+.container.active .boxTitle {
+    top: 10%;
+    animation: floatTitle 4s ease-in-out infinite alternate 1.2s;
 }
 
-.paperHeart4 {
-    left: 800px;
+@keyframes floatTitle {
+    0% { transform: translateX(-50%) translateY(0); }
+    100% { transform: translateX(-50%) translateY(-12px); }
 }
 
-.paperHeart5 {
-    left: 1100px;
-}
-
-.paperHeart6 {
-    left: 1400px;
-}
-
+/* ==================== BUTTON & CLOUDS ==================== */
 .boxCloud {
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 300px;
+    height: 250px;
     width: 100%;
-    background-color: transparent;
 }
 
-.container .cloud {
-    position: absolute;
-    top: 120%;
-    left: -50px;
-}
-
-.container .cloud1 {
-    position: absolute;
-    top: 120%;
-    left: -50px;
-}
-
+.container .cloud, 
+.container .cloud1, 
 .container .cloud2 {
     position: absolute;
-    top: 120%;
+    bottom: -250px;
     left: -50px;
-}
-
-.container.active.close {
-    .btnBox {
-        animation: disappearBtn 1s ease-in-out forwards;
-    }
-
-    .boxTitle {
-        animation: disappearBoxTitle 1s ease-in-out forwards;
-    }
-}
-
-@keyframes disappearBtn {
-    from {
-        top: 50%;
-    }
-
-    to {
-        top: 150%;
-    }
-}
-
-@keyframes disappearBoxTitle {
-    from {
-        top: 10%;
-    }
-
-    to {
-        top: -50%;
-    }
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    transition: bottom 1.2s ease-out;
 }
 
 .container.active .cloud {
-    position: absolute;
-    top: 0;
-    left: -50px;
-    height: 200px;
-    width: 200px;
-    background-color: #ffb3c1;
-    border-radius: 50%;
-    box-shadow: 120px -20px #ffb3c1, 240px -40px #ffb3c1, 360px -20px #ffb3c1,
-    480px 0px #ffb3c1, 600px -10px #ffb3c1, 720px 10px #ffb3c1, 840px 20px #ffb3c1, 
-    960px 0px #ffb3c1, 1080px 40px #ffb3c1, 1200px 20px #ffb3c1, 1320px 0px #ffb3c1,
-    1440px -20px #ffb3c1;
-    transition: .8s;
-    transition-delay: 2.2s;
-    animation: animateCloud 3s ease-in-out 1s infinite;
-}
-
-@keyframes animateCloud {
-    0% {
-        top: 0;
-    }
-
-    25% {
-        top:  10px;
-    }
-
-    50% {
-        top: -10px;
-    }
-
-    75% {
-        top: 10px;
-    }
-
-    100% {
-        top: 0;
-    }
-
-}
-
-@keyframes animateCloud1 {
-    0% {
-        top: 75;
-    }
-
-    25% {
-        top:  85;
-    }
-
-    50% {
-        top: 65;
-    }
-
-    75% {
-        top: 85;
-    }
-
-    100% {
-        top: 75;
-    }
-
-}
-
-@keyframes animateCloud2 {
-    0% {
-        top: 150;
-    }
-
-    25% {
-        top:  160px;
-    }
-
-    50% {
-        top: 140px;
-    }
-
-    75% {
-        top: 160px;
-    }
-
-    100% {
-        top: 150;
-    }
-
+    bottom: -100px;
+    background-color: #fde2e4;
+    box-shadow: 120px -20px #fde2e4, 240px -40px #fde2e4, 360px -20px #fde2e4,
+                480px 0px #fde2e4, 600px -10px #fde2e4, 720px 10px #fde2e4, 
+                840px 20px #fde2e4, 960px 0px #fde2e4, 1080px 40px #fde2e4, 
+                1200px 20px #fde2e4, 1320px 0px #fde2e4, 1440px -20px #fde2e4;
+    transition-delay: 0.2s;
 }
 
 .container.active .cloud1 {
-    position: absolute;
-    top: 75px;
-    left: -50px;
-    content: "";
-    height: 200px;
-    width: 200px;
-    background-color: #ffccd5;
-    border-radius: 50%;
-    box-shadow: 120px -20px #ffccd5, 240px -40px #ffccd5, 360px -20px #ffccd5,
-    480px 0px #ffccd5, 600px -10px #ffccd5, 720px 10px #ffccd5, 840px 20px #ffccd5, 
-    960px 0px #ffccd5, 1080px 40px #ffccd5, 1200px 20px #ffccd5, 1320px 0px #ffccd5,
-    1440px -20px #ffccd5, 1560px 0px #ffccd5;
-    transition: .8s;
-    transition-delay: 1.3s;
-    animation: animateClou1 3s ease-in-out 1.5s infinite;
+    bottom: -130px;
+    background-color: #fff0f3;
+    box-shadow: 120px -20px #fff0f3, 240px -40px #fff0f3, 360px -20px #fff0f3,
+                480px 0px #fff0f3, 600px -10px #fff0f3, 720px 10px #fff0f3, 
+                840px 20px #fff0f3, 960px 0px #fff0f3, 1080px 40px #fff0f3, 
+                1200px 20px #fff0f3, 1320px 0px #fff0f3, 1440px -20px #fff0f3;
+    transition-delay: 0.4s;
 }
 
 .container.active .cloud2 {
-    position: absolute;
-    top: 150px;
-    left: -50px;
-    content: "";
-    height: 200px;
-    width: 200px;
-    background-color: white;
-    border-radius: 50%;
-    box-shadow: 120px -20px white, 240px -20px white, 360px -20px white,
-    480px 0px white, 600px -10px white, 720px 10px white, 840px 20px white, 
-    960px 0px white, 1080px 40px white, 1200px 20px white, 1320px 0px white,
-    1440px -20px white, 1560px 0px white;
-    transition: .8s;
-    transition-delay: .5s;
-    animation: animateCloud2 3s ease-in-out 2s infinite;
+    bottom: -160px;
+    background-color: #ffffff;
+    box-shadow: 120px -20px #ffffff, 240px -20px #ffffff, 360px -20px #ffffff,
+                480px 0px #ffffff, 600px -10px #ffffff, 720px 10px #ffffff, 
+                840px 20px #ffffff, 960px 0px #ffffff, 1080px 40px #ffffff, 
+                1200px 20px #ffffff, 1320px 0px #ffffff, 1440px -20px #ffffff;
+    transition-delay: 0.6s;
 }
 
-.boxTitle {
-    position: absolute;
-    top: 120%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: "Rubik Glitch Pop", system-ui;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 120px;
-    color: pink;
-    height: fit-content;
-    width: fit-content;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    text-shadow: 0 0 20px white;
-    animation: appearTitle 2s linear 3.1s forwards, floatingWords 4s ease-in-out infinite;
-    
-}
-
-.container .btnBox {
+.btnBox {
     position: absolute;
     top: 150%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 160px;
-    width: 400px;
-    opacity: 1;
+    z-index: 10;
+    transition: top 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .container.active .btnBox {
-    opacity: 1;
-    transition: 1s;
-    transition-delay: 5s;
-    animation: appearBtnBox 2s ease-in-out 5s forwards,animateOpenBtn 2s ease-in-out 5s infinite;
-}
-
-@keyframes appearBtnBox {
-    from {
-        top: 150%;
-    }
-
-    to {
-        top: 50%;
-    }
-}
-
-.cloudBtn {
-    position: relative;
-    height: 100px;
-    width: 100px;
-    background-color: #fc6885;
-    border-radius: 50%;
-    box-shadow: 60px 0 #fc6885, 120px 0 #fc6885, 180px 0 #fc6885, 240px 0 #fc6885,
-    300px 0 #fc6885, 300px 60px #fc6885, 240px 60px #fc6885, 180px 60px #fc6885,
-    120px 60px #fc6885, 60px 60px #fc6885, 0 60px #fc6885;
-}
-
-.cloudBtn::before {
-    position: absolute;
-    content: "";
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 80px;
-    width: 80px;
-    background-color: white;
-    border-radius: 50%;
-    box-shadow: 60px 0 white, 120px 0 white, 180px 0 white, 240px 0 white,
-    300px 0 white, 300px 60px white, 240px 60px white, 180px 60px white,
-    120px 60px white, 60px 60px white, 0 60px white;
+    top: 60%;
+    transition-delay: 1s;
 }
 
 .openBtn {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    font-family: "Rubik Glitch Pop", system-ui;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 40px;
-    color: #fc6885;
-    background-color: transparent;
+    padding: 16px 32px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: #ffffff;
+    background: linear-gradient(45deg, #ff8fa3, #ffb5a7);
     border: none;
-    text-shadow: 0 0 10px pink;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(255, 143, 163, 0.5);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    animation: pulseBtn 2s infinite;
+    touch-action: manipulation;
 }
 
-.openBtn:hover {
-    cursor: grab;
+.openBtn:active {
+    transform: scale(0.95);
 }
 
-/* OPEN */
-.container.active.open {
-    .boxTitle {
-        animation: none;
-        top: -40%;
-    }
-
-    .btnBox {
-        animation: none;
-        top: 140%;
-    }
-    
+.openBtn .btn-heart {
+    font-size: 18px;
+    animation: heartBeat 1.2s infinite;
 }
 
+@keyframes pulseBtn {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+}
+
+/* ==================== STATE CLOSE ==================== */
+.container.close .btnBox {
+    top: 150%;
+    opacity: 0;
+}
+
+.container.close .boxTitle {
+    top: -40%;
+    opacity: 0;
+}
+
+/* ==================== CARD VALENTINE ==================== */
 .cardValentine {
     position: absolute;
-    top: 200%;
+    top: 150%;
     left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    height: 500px;
+    width: 740px;
     opacity: 0;
-    transform: translate(-50%, -50%);
-    height: 600px;
-    width: 800px;
-    background-color: transparent;
-    transition: .5;
+    z-index: 20;
+    transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+    perspective: 2000px;
 }
 
 .cardValentine.active {
-    position: absolute;
     top: 50%;
-    left: 50%;
     opacity: 1;
-    transform: translate(-50%, -50%);
-    height: 600px;
-    width: 800px;
-    background-color: transparent;
-    transition: .5;
-    animation: animateCard 2s ease-in-out forwards;
-}
-
-@keyframes animateCard {
-    from {
-        top: 200%;
-    }
-
-    to {
-        top: 50%;
-    }
+    transform: translate(-50%, -50%) scale(1);
 }
 
 .cardValentine .left {
-    z-index: 2;
     position: absolute;
     top: 0;
     left: 50%;
     height: 100%;
     width: 50%;
-    border-radius: 10px;
-    transition: .5s;
-    padding: 20px;
+    z-index: 5;
+    transform-style: preserve-3d;
+    transform-origin: left;
+    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
 }
 
-.cardValentine .left .leftFront {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: #f35553;
-    border-radius: inherit;
-    transition: .5s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 10px lightgray;
-    border-left: 10px solid #c9413f;
-}
-
-.boxShadow {
-    filter: drop-shadow(0 0 10px white);
-    height: fit-content;
-    width: fit-content;
-}
-
-.boxTitleCard {
-    position: relative;
-    height: 300px;
-    width: 300px;
-    display: flex;
-    justify-content: center;
-    background-color: white;
-    clip-path: polygon(10% 0, 35% 0, 50% 23%, 65% 0, 90% 0, 100% 30%, 50% 100%, 0 30%);
-}
-
-.boxTitleCard::before {
-    position: absolute;
-    content: "";
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 280px;
-    width: 280px;
-    background-color: #f35553;
-    clip-path: polygon(10% 0, 35% 0, 50% 23%, 65% 0, 90% 0, 100% 30%, 50% 100%, 0 30%);
-}
-
-.boxTitleCard::after {
-    position: absolute;
-    content: "";
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 250px;
-    width: 250px;
-    background-color: white;
-    clip-path: polygon(10% 0, 35% 0, 50% 23%, 65% 0, 90% 0, 100% 30%, 50% 100%, 0 30%);
-}
-
-
-.titleCard {
-    font-family: "Protest Revolution", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 60px;
-    color: #f35553;
-    margin-top: 80px;
-}
-
+.cardValentine .left .leftFront,
 .cardValentine .left .leftBack {
     position: absolute;
     top: 0;
     left: 0;
-    transform: rotateY(180deg);
-    backface-visibility: hidden;
-    background-color: #f35553;
     height: 100%;
     width: 100%;
-    border-radius: inherit;
-    border-right: 10px solid #c9413f;
+    border-radius: 16px 0 0 16px;
+    backface-visibility: hidden;
+    box-shadow: var(--shadow-soft);
+}
+
+.cardValentine .left .leftFront {
+    background: linear-gradient(135deg, #ffccd5 0%, #ffb5a7 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-right: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Container chứa trái tim CSS */
+.boxTitleCard {
+    width: 150px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: .5s;
+    box-shadow: 0 10px 25px rgba(255, 182, 193, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.7);
 }
 
-.artHeart {
-    width: 90%;
-    height: auto;
-    filter: drop-shadow(0 0 5px white);
+/* Trái tim CSS Thuần */
+.css-heart {
+    position: relative;
+    width: 45px;
+    height: 45px;
+    background-color: #ff6b81;
+    transform: rotate(-45deg);
+    margin-top: 12px;
+    box-shadow: 0 5px 15px rgba(255, 107, 129, 0.4);
+    animation: heartPulse 1.8s ease-in-out infinite;
+}
+
+.css-heart::before,
+.css-heart::after {
+    content: "";
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    background-color: #ff6b81;
+    border-radius: 50%;
+}
+
+.css-heart::before {
+    top: -22.5px;
+    left: 0;
+}
+
+.css-heart::after {
+    left: 22.5px;
+    top: 0;
+}
+
+@keyframes heartPulse {
+    0%, 100% { transform: rotate(-45deg) scale(1); }
+    50% { transform: rotate(-45deg) scale(1.12); }
 }
 
 .des {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: "Protest Revolution", sans-serif;
-    font-weight: 400;
-    font-size: 24px;
-    font-style: normal;
-    width: 100%;
+    margin-top: 30px;
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    font-size: 26px;
+    color: var(--soft-red);
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
     text-align: center;
 }
 
+.cardValentine .left .leftBack {
+    background: #ffe5ec;
+    transform: rotateY(180deg);
+    border-radius: 0 16px 16px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.artHeart {
+    max-width: 85%;
+    max-height: 85%;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 12px rgba(0,0,0,0.08));
+}
+
 .cardValentine .right {
-    z-index: 1;
     position: absolute;
     top: 0;
     left: 50%;
     height: 100%;
     width: 50%;
-    background-color: #f35553;
-    border-radius: 10px;
+    background: var(--paper-bg);
+    border-radius: 0 16px 16px 0;
+    box-shadow: var(--shadow-soft);
     display: flex;
     justify-content: center;
     align-items: center;
-    border-left: 10px solid #c9413f;
-    transition: .5s;
+    padding: 20px;
+    z-index: 1;
 }
 
 .rightContent {
-    font-size: 20px;
-    height: 95%;
-    width: 90%;
-    background-color: wheat;
-    border-radius: 5px;
+    height: 100%;
+    width: 100%;
+    background: #ffffff;
+    border: 2px dashed #ffcad4;
+    border-radius: 12px;
     padding: 20px 15px;
-    overflow: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .rightContent::-webkit-scrollbar {
-    background-color: white;
-    width: 6px;
+    width: 4px;
 }
 
 .rightContent::-webkit-scrollbar-thumb {
-    background-color: #d34745;
+    background-color: #ffb5a7;
+    border-radius: 10px;
 }
 
 .letterContent {
-    font-family: "Pacifico", cursive;
-    font-weight: 400;
-    font-style: normal;
+    font-family: 'Dancing Script', cursive;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--text-color);
+    white-space: pre-line;
 }
 
-.cardValentine.active.open {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: .5s;
-
-    .left {
-        transform-style: preserve-3d;
-        transform: rotateY(-180deg);
-        transform-origin: left;
-        background-color: red;
-        transition: .5s;
-    }
-
-    .leftFront {
-        backface-visibility: hidden;
-    }
-
+.letterContent::after {
+    content: '|';
+    animation: blink 0.8s infinite;
+    font-weight: normal;
+    color: var(--soft-red);
 }
 
-@keyframes appearTitle {
-    to {
-        top: 10%;
-    }
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
 
-@keyframes floatingWords {
-    0% {
-        transform: translateX(-50%);
-    }
-
-    25% {
-        transform: translateX(-50%) translateY(-50px);
-    }
-
-    50% {
-        transform: translateX(-50%) translateY(50px);
-    }
-
-    75% {
-        transform: translateX(-50%) translateY(0);
-    }
+.cardValentine.open .left {
+    transform: rotateY(-180deg);
 }
 
-@keyframes flyHeart {
-    to {
-        top: -20%;
-    }
-}
-
-@keyframes hiddenHeart {
-    0% {
-        opacity: 0;
+/* ==================== MOBILE RESPONSIVE (TỐI ƯU CHO ĐIỆN THOẠI) ==================== */
+@media (max-width: 768px) {
+    .boxTitle {
+        font-size: 52px;
     }
 
-    95% {
-        opacity: 0;
+    .openBtn {
+        padding: 14px 28px;
+        font-size: 18px;
     }
 
-    100% {
-        opacity: 1;
-    }
-}
-
-@keyframes animateOpenBtn {
-    25% {
-        top: 50%;
+    /* Thu nhỏ thiệp vừa vặn màn hình điện thoại */
+    .cardValentine {
+        width: 92vw;
+        height: 65vh;
+        max-height: 480px;
     }
 
-    50% {
-        top: calc(50% + 2px);
+    .boxTitleCard {
+        width: 110px;
+        height: 110px;
     }
 
-    75% {
-        top: calc(50% - 2px);
+    .css-heart, .css-heart::before, .css-heart::after {
+        width: 32px;
+        height: 32px;
     }
 
-    100% {
-        top: 50%;
+    .css-heart::before { top: -16px; }
+    .css-heart::after { left: 16px; }
+
+    .des {
+        font-size: 20px;
+        margin-top: 20px;
+    }
+
+    .rightContent {
+        padding: 15px 10px;
+    }
+
+    .letterContent {
+        font-size: 20px;
+        line-height: 1.4;
+    }
+
+    .paperHeart {
+        height: 50px;
     }
 }

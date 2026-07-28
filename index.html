@@ -1,57 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="./main.css">
-    <!-- GOOGLE fONTS -->
+
+    <!-- GOOGLE FONTS: Chọn các font Tiếng Việt hỗ trợ đầy đủ bộ dấu -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Protest+Riot&family=Rubik+Glitch+Pop&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Dancing+Script:wght@500;600;700&display=swap"
         rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Protest+Revolution&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Pacifico&family=Protest+Revolution&display=swap" rel="stylesheet">
-    <!--              -->
-    <title>Anniversary Day</title>
+    <title>Happy Anniversary</title>
 </head>
 
 <body>
     <div class="container">
-        <img class="paperHeart paperHeart1" style="--time: 0s" src="./img/vyyy.png" alt="">
-        <img class="paperHeart paperHeart2" style="--time: 1s" src="./img/vyy (1).png" alt="">
-        <img class="paperHeart paperHeart3" style="--time: 2.5s" src="./img/vyy (2).png" alt="">
-        <img class="paperHeart paperHeart4" style="--time: 4s" src="./img/vyy (3).png" alt="">
-        <img class="paperHeart paperHeart5" style="--time: 2s" src="./img/vyy (4).png" alt="">
-        <img class="paperHeart paperHeart6" style="--time: 3s" src="./img/vyy (5).png" alt="">
+        <!-- Floating Hearts -->
+        <div class="hearts-layer">
+            <img class="paperHeart paperHeart1" style="--time: 0s; --speed: 6s;" src="./img/vyyy.png" alt="heart">
+            <img class="paperHeart paperHeart2" style="--time: 1.2s; --speed: 7s;" src="./img/vyy (1).png" alt="heart">
+            <img class="paperHeart paperHeart3" style="--time: 2.5s; --speed: 5.5s;" src="./img/vyy (2).png"
+                alt="heart">
+            <img class="paperHeart paperHeart4" style="--time: 3.8s; --speed: 6.5s;" src="./img/vyy (3).png"
+                alt="heart">
+            <img class="paperHeart paperHeart5" style="--time: 2s; --speed: 8s;" src="./img/vyy (4).png" alt="heart">
+            <img class="paperHeart paperHeart6" style="--time: 3.2s; --speed: 6.2s;" src="./img/vyy (5).png"
+                alt="heart">
+        </div>
 
+        <!-- Main Title -->
         <div class="boxTitle">
             <p class="firstTitle partTitle">Happy</p>
             <p class="secondTitle partTitle">Anniversary</p>
         </div>
 
+        <!-- Clouds & Button -->
         <div class="boxCloud">
             <div class="cloud"></div>
             <div class="cloud1"></div>
             <div class="cloud2"></div>
 
             <div class="btnBox">
-                <div class="cloudBtn"></div>
-                <button class="openBtn">Chạm vào đây đi</button>
+                <button class="openBtn">
+                    <span>Chạm vào đây đi</span>
+                    <span class="btn-heart">❤️</span>
+                </button>
             </div>
         </div>
 
+        <!-- Card Container -->
         <div class="cardValentine">
             <div class="left">
                 <div class="leftFront">
                     <div class="boxShadow">
-                        <div class="boxTitleCard"></div>
+                        <div class="boxTitleCard">
+                            <!-- Trái tim CSS thuần mượt mà -->
+                            <div class="css-heart"></div>
+                        </div>
                     </div>
-
-                    <p class="des">Hãy chạm vào tấm thiệp</p>
+                    <p class="des">Hãy chạm vào tấm thiệp ✨</p>
                 </div>
                 <div class="leftBack">
-                    <img class="artHeart" src="./img/img1111.png" alt="">
+                    <img class="artHeart" src="./img/img1111.png" alt="art heart">
                 </div>
             </div>
 
@@ -62,10 +74,12 @@
             </div>
         </div>
     </div>
-  <audio id="bgMusic" loop>
+
+    <audio id="bgMusic" loop preload="auto">
         <source src="./img/A Thousand Years.mp3" type="audio/mpeg">
         Trình duyệt của bạn không hỗ trợ audio.
     </audio>
+
     <script src="./main.js"></script>
 </body>
 
